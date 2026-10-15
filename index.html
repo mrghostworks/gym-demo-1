@@ -1,0 +1,452 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Forge Fitness — expert coaching, strength training and premium gym memberships.">
+<title>FORGE FITNESS | Train Beyond Limits</title>
+
+<style>
+:root {
+  --bg: #0b0d0e;
+  --card: #151819;
+  --lime: #c8ff3d;
+  --white: #f7f8f5;
+  --muted: #a5acab;
+  --line: #2b3032;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+}
+a { text-decoration: none; color: inherit; }
+button, input, select, textarea { font: inherit; }
+.container { width: 92%; max-width: 1180px; margin: auto; }
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(11,13,14,.95);
+  border-bottom: 1px solid var(--line);
+}
+.nav {
+  min-height: 78px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 25px;
+}
+.logo { font-weight: 950; font-size: 1.3rem; letter-spacing: 1px; }
+.logo span, .lime { color: var(--lime); }
+.nav-links { display: flex; gap: 25px; font-size: .9rem; }
+.nav-links a:hover { color: var(--lime); }
+
+.btn {
+  display: inline-block;
+  background: var(--lime);
+  color: #11150a;
+  padding: 13px 21px;
+  font-weight: 800;
+  border: 1px solid var(--lime);
+  cursor: pointer;
+  transition: .25s;
+}
+.btn:hover { transform: translateY(-2px); filter: brightness(1.08); }
+.btn-outline { background: transparent; color: white; border-color: #747a79; }
+.menu-btn { display: none; background: none; color: white; border: 0; font-size: 25px; cursor: pointer; }
+
+.hero {
+  min-height: 690px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  background:
+    linear-gradient(90deg, rgba(5,7,7,.96), rgba(5,7,7,.68) 53%, rgba(5,7,7,.2)),
+    url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=2000&q=85")
+    center/cover;
+}
+.hero-content { max-width: 760px; padding: 90px 0; }
+.eyebrow {
+  color: var(--lime);
+  font-size: .78rem;
+  font-weight: 900;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+h1 {
+  font-size: clamp(3.5rem, 9vw, 7.5rem);
+  line-height: .92;
+  letter-spacing: -5px;
+  text-transform: uppercase;
+  margin: 22px 0;
+}
+.hero p { max-width: 550px; color: #d2d7d5; font-size: 1.05rem; margin-bottom: 28px; }
+.actions { display: flex; flex-wrap: wrap; gap: 12px; }
+.stats { display: flex; gap: 45px; flex-wrap: wrap; margin-top: 45px; }
+.stat strong { display: block; font-size: 1.5rem; }
+.stat span { color: var(--muted); font-size: .85rem; }
+
+section { padding: 90px 0; }
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 30px;
+  margin-bottom: 38px;
+}
+h2 { font-size: clamp(2.3rem, 5vw, 4rem); line-height: 1.05; text-transform: uppercase; letter-spacing: -2px; }
+.section-heading p { max-width: 420px; color: var(--muted); }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+.program {
+  min-height: 330px;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  background:
+    linear-gradient(0deg, #080a0a 0%, rgba(8,10,10,.1) 100%),
+    var(--photo) center/cover;
+  border: 1px solid var(--line);
+  transition: .3s;
+}
+.program:hover { border-color: var(--lime); transform: translateY(-5px); }
+.program .number { color: var(--lime); font-weight: 900; font-size: .8rem; }
+.program h3 { text-transform: uppercase; font-size: 1.65rem; margin: 8px 0; }
+.program p { color: #d0d5d3; font-size: .92rem; }
+
+.about { background: #111516; }
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+.about-image {
+  min-height: 480px;
+  background: url("https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?auto=format&fit=crop&w=1200&q=85") center/cover;
+}
+.about-copy p { color: var(--muted); margin: 20px 0; }
+.features { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 25px 0; }
+.features div { padding: 13px 0; border-top: 1px solid var(--line); font-weight: 700; }
+.features span { color: var(--lime); margin-right: 8px; }
+
+.plan { padding: 30px; background: var(--card); border: 1px solid var(--line); }
+.plan.popular { border-color: var(--lime); }
+.tag { display: inline-block; color: #11150a; background: var(--lime); padding: 4px 9px; font-size: .72rem; font-weight: 900; margin-bottom: 14px; }
+.plan h3 { text-transform: uppercase; font-size: 1.35rem; }
+.price { font-size: 2.5rem; font-weight: 950; margin: 15px 0; letter-spacing: -1px; }
+.price small { font-size: .85rem; color: var(--muted); font-weight: 400; letter-spacing: 0; }
+.plan p { color: var(--muted); min-height: 48px; }
+.plan ul { list-style: none; margin: 22px 0; }
+.plan li { border-bottom: 1px solid var(--line); padding: 10px 0; color: #d9dddb; font-size: .9rem; }
+.plan li::before { content: "✓ "; color: var(--lime); font-weight: 900; }
+.plan .btn { width: 100%; text-align: center; }
+
+.trainer { background: var(--card); border: 1px solid var(--line); }
+.trainer img { width: 100%; height: 330px; display: block; object-fit: cover; filter: grayscale(100%); }
+.trainer-info { padding: 22px; }
+.trainer-info h3 { text-transform: uppercase; font-size: 1.2rem; }
+.trainer-info p { color: var(--lime); font-size: .8rem; text-transform: uppercase; letter-spacing: 1px; }
+
+.cta { background: var(--lime); color: #11150a; }
+.cta-row { display: flex; align-items: center; justify-content: space-between; gap: 30px; }
+.cta p { margin-top: 12px; max-width: 550px; }
+.cta .btn { background: #11150a; border-color: #11150a; color: white; white-space: nowrap; }
+.cta .eyebrow { color: #38451b; margin-bottom: 12px; }
+
+.contact-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; }
+.contact-copy p { color: var(--muted); margin: 20px 0; }
+.contact-details { display: grid; gap: 12px; color: #d9dddb; }
+form { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+input, select, textarea {
+  width: 100%;
+  padding: 15px;
+  background: var(--card);
+  color: white;
+  border: 1px solid var(--line);
+  outline: none;
+  border-radius: 0;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--lime); }
+select option { background: var(--card); }
+textarea { grid-column: 1/-1; min-height: 120px; resize: vertical; }
+form button, form .form-note { grid-column: 1/-1; }
+.form-note { color: var(--muted); font-size: .83rem; }
+
+footer { padding: 25px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
+.footer-row { display: flex; justify-content: space-between; gap: 15px; flex-wrap: wrap; }
+
+@media (max-width: 850px) {
+  .menu-btn { display: block; }
+  .nav > .nav-cta { display: none; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 78px; left: 0; right: 0;
+    padding: 25px 5%;
+    background: #101314;
+    flex-direction: column;
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-links.open { display: flex; }
+  .grid { grid-template-columns: 1fr 1fr; }
+  .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 35px; }
+  .section-heading { align-items: start; flex-direction: column; }
+  .about-image { min-height: 360px; }
+  .cta-row { align-items: start; flex-direction: column; }
+}
+@media (max-width: 560px) {
+  section { padding: 65px 0; }
+  .grid { grid-template-columns: 1fr; }
+  .hero { min-height: 610px; background-position: 60% center; }
+  h1 { letter-spacing: -2px; }
+  .stats { gap: 22px; }
+  .features { grid-template-columns: 1fr; }
+  form { grid-template-columns: 1fr; }
+  textarea, form button, form .form-note { grid-column: 1; }
+  .trainer img { height: 360px; }
+}
+</style>
+</head>
+
+<body>
+<header>
+  <div class="container nav">
+    <a class="logo" href="#home">FORGE<span>.</span>FITNESS</a>
+    <nav class="nav-links" id="navLinks" aria-label="Main navigation">
+      <a href="#programs">Programs</a>
+      <a href="#about">About</a>
+      <a href="#membership">Membership</a>
+      <a href="#trainers">Trainers</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <a class="btn nav-cta" href="#contact">JOIN THE GYM ↗</a>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="home">
+    <div class="container hero-content">
+      <div class="eyebrow">Your next level starts here</div>
+      <h1>Built by<br><span>discipline.</span></h1>
+      <p>Train with purpose. Get stronger every day. Discover a fitness community that pushes you to become your best self.</p>
+      <div class="actions">
+        <a class="btn" href="#membership">EXPLORE MEMBERSHIPS ↗</a>
+        <a class="btn btn-outline" href="#programs">DISCOVER PROGRAMS</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><strong>01</strong><span>Expert coaching</span></div>
+        <div class="stat"><strong>02</strong><span>Modern equipment</span></div>
+        <div class="stat"><strong>03</strong><span>Focused training</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="programs">
+    <div class="container">
+      <div class="section-heading">
+        <div><div class="eyebrow">Train with purpose</div><h2>Find your strong.</h2></div>
+        <p>From your first workout to your next personal best, choose a training style that matches your goals.</p>
+      </div>
+      <div class="grid">
+        <article class="program" style="--photo:url('https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?auto=format&fit=crop&w=900&q=85')">
+          <div class="number">01 / STRENGTH</div><h3>Weight training</h3>
+          <p>Build muscle, develop technique, and grow stronger with every session.</p>
+        </article>
+        <article class="program" style="--photo:url('https://images.unsplash.com/photo-1538805060514-97d9cc17730c?auto=format&fit=crop&w=900&q=85')">
+          <div class="number">02 / ENDURANCE</div><h3>Cardio & HIIT</h3>
+          <p>Improve stamina and challenge yourself with energetic workouts.</p>
+        </article>
+        <article class="program" style="--photo:url('https://images.unsplash.com/photo-1518611012118-696072aa579a?auto=format&fit=crop&w=900&q=85')">
+          <div class="number">03 / MOVEMENT</div><h3>Functional fitness</h3>
+          <p>Work on mobility, coordination, balance, and everyday performance.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="container about-grid">
+      <div class="about-image" role="img" aria-label="Athlete training in a gym"></div>
+      <div class="about-copy">
+        <div class="eyebrow">Welcome to Forge</div>
+        <h2>Progress over perfection.</h2>
+        <p>Fitness is more than lifting weights. It is about building habits, learning good technique, and showing up consistently.</p>
+        <p>Our goal is to make every session count with an encouraging environment and training that fits your journey.</p>
+        <div class="features">
+          <div><span>✦</span> Modern equipment</div>
+          <div><span>✦</span> Experienced coaches</div>
+          <div><span>✦</span> Personal guidance</div>
+          <div><span>✦</span> Clean training space</div>
+        </div>
+        <a class="btn" href="#contact">PLAN YOUR FIRST VISIT ↗</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="membership">
+    <div class="container">
+      <div class="section-heading">
+        <div><div class="eyebrow">Membership plans</div><h2>Invest in yourself.</h2></div>
+        <p>Choose a membership to get started. These are sample prices; update them to match the real gym.</p>
+      </div>
+      <div class="grid">
+        <article class="plan">
+          <h3>Starter</h3>
+          <div class="price">₹999 <small>/ month</small></div>
+          <p>Build your routine with access to the essentials.</p>
+          <ul><li>Gym floor access</li><li>Equipment orientation</li><li>Locker access</li><li>Flexible workout routine</li></ul>
+          <a class="btn" href="#contact" data-plan="Starter">CHOOSE STARTER</a>
+        </article>
+        <article class="plan popular">
+          <span class="tag">MOST POPULAR</span>
+          <h3>Performance</h3>
+          <div class="price">₹1,799 <small>/ month</small></div>
+          <p>For members ready to take their training further.</p>
+          <ul><li>Full gym access</li><li>Group fitness classes</li><li>Monthly progress check-in</li><li>Training consultation</li></ul>
+          <a class="btn" href="#contact" data-plan="Performance">CHOOSE PERFORMANCE</a>
+        </article>
+        <article class="plan">
+          <h3>Elite coaching</h3>
+          <div class="price">₹3,499 <small>/ month</small></div>
+          <p>Personalized guidance and structured support.</p>
+          <ul><li>Full gym access</li><li>Personal training</li><li>Individual workout plan</li><li>Monthly progress review</li></ul>
+          <a class="btn" href="#contact" data-plan="Elite coaching">CHOOSE ELITE</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="trainers">
+    <div class="container">
+      <div class="section-heading">
+        <div><div class="eyebrow">Meet your coaches</div><h2>Guidance that moves you.</h2></div>
+        <p>Meet the people who can help you build confidence, improve technique, and stay consistent.</p>
+      </div>
+      <div class="grid">
+        <article class="trainer">
+          <img src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?auto=format&fit=crop&w=900&q=85" alt="Fitness coach">
+          <div class="trainer-info"><h3>Arjun Mehta</h3><p>Strength & conditioning</p></div>
+        </article>
+        <article class="trainer">
+          <img src="https://images.unsplash.com/photo-1609899537878-88d5ba429bdb?auto=format&fit=crop&w=900&q=85" alt="Personal fitness coach">
+          <div class="trainer-info"><h3>Priya Sharma</h3><p>Functional fitness</p></div>
+        </article>
+        <article class="trainer">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=900&q=85" alt="Strength training coach">
+          <div class="trainer-info"><h3>Rahul Singh</h3><p>Personal training</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container cta-row">
+      <div>
+        <div class="eyebrow">Your journey starts now</div>
+        <h2>Make your next move count.</h2>
+        <p>Take the first step toward a stronger routine. Visit the gym and discover your plan.</p>
+      </div>
+      <a class="btn" href="#contact">BOOK A GYM VISIT ↗</a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="container contact-grid">
+      <div class="contact-copy">
+        <div class="eyebrow">Get in touch</div>
+        <h2>Let's get moving.</h2>
+        <p>Have questions about memberships? Send an enquiry and let the team know your goals.</p>
+        <div class="contact-details">
+          <div>⌖ &nbsp; Your City, India</div>
+          <div>◷ &nbsp; Monday–Saturday · 6 AM–10 PM</div>
+          <div>✉ &nbsp; Replace with your gym email</div>
+        </div>
+      </div>
+
+      <form id="enquiryForm">
+        <input name="name" placeholder="Full name" aria-label="Full name" required>
+        <input name="phone" placeholder="Phone / WhatsApp number" aria-label="Phone number" required>
+        <select name="goal" aria-label="Fitness goal" required>
+          <option value="">Your fitness goal</option>
+          <option>Build muscle</option>
+          <option>Lose weight</option>
+          <option>Improve endurance</option>
+          <option>General fitness</option>
+        </select>
+        <select name="plan" id="planSelect" aria-label="Membership plan">
+          <option value="">Select a membership</option>
+          <option>Starter</option>
+          <option>Performance</option>
+          <option>Elite coaching</option>
+        </select>
+        <textarea name="message" placeholder="Your message (optional)" aria-label="Message"></textarea>
+        <button class="btn" type="submit">SEND ENQUIRY ↗</button>
+        <p class="form-note" id="formNote" aria-live="polite">Demo form: configure your email or connect a backend to receive enquiries.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-row">
+    <div><strong>FORGE<span class="lime">.</span>FITNESS</strong> — Train beyond limits.</div>
+    <div>© <span id="year"></span> Forge Fitness. Sample website.</div>
+    <a href="#home">Back to top ↑</a>
+  </div>
+</footer>
+
+<script>
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+  const isOpen = navLinks.classList.toggle("open");
+  menuBtn.setAttribute("aria-expanded", String(isOpen));
+  menuBtn.textContent = isOpen ? "✕" : "☰";
+});
+
+navLinks.querySelectorAll("a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("open");
+    menuBtn.setAttribute("aria-expanded", "false");
+    menuBtn.textContent = "☰";
+  });
+});
+
+document.querySelectorAll("[data-plan]").forEach(link => {
+  link.addEventListener("click", () => {
+    document.getElementById("planSelect").value = link.dataset.plan;
+  });
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
+
+document.getElementById("enquiryForm").addEventListener("submit", event => {
+  event.preventDefault();
+  const data = new FormData(event.currentTarget);
+
+  // Replace this email address with the gym's real email.
+  const email = "YOUR-EMAIL@example.com";
+  const subject = encodeURIComponent("Gym Membership Enquiry");
+  const body = encodeURIComponent(
+    "Name: " + data.get("name") + "\n" +
+    "Phone: " + data.get("phone") + "\n" +
+    "Goal: " + data.get("goal") + "\n" +
+    "Membership: " + (data.get("plan") || "Not selected") + "\n" +
+    "Message: " + (data.get("message") || "None")
+  );
+
+  document.getElementById("formNote").textContent =
+    "Your email app will be asked to open with the enquiry drafted. This demo does not store enquiries online.";
+
+  window.location.href =
+    "mailto:" + email + "?subject=" + subject + "&body=" + body;
+});
+</script>
+</body>
+</html>
